@@ -107,23 +107,22 @@ return result.Contains("height") && result.Contains("width") ? "live" : "die";
 ## 📞 Liên hệ
 
 ### 👨‍💻 Developer
-- **Telegram**: [@imhiendev](https://t.me/imhiendev)
-- **GitHub**: [@imhiendev](https://github.com/imhiendev)
+- **Telegram**: [@kaizdev1](https://t.me/kaizdev1)
 
 ### 🆘 Support
 Nếu bạn cần hỗ trợ:
-1. Liên hệ trực tiếp qua Telegram: [@imhiendev](https://t.me/imhiendev)
+1. Liên hệ trực tiếp qua Telegram: [@imhiendev](https://t.me/kaizdev1)
 2. Tạo issue trên GitHub repository
 
 ### 💼 Business Inquiry
 Để hợp tác kinh doanh hoặc custom development:
-- **Telegram**: [@imhiendev](https://t.me/imhiendev)
+- **Telegram**: [@kaizdev1](https://t.me/kaizdev1)
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by [@imhiendev](https://t.me/imhiendev)**
+**Made with ❤️ by [@kaizdev1](https://t.me/kaizdev1)**
 
 *Nếu project này hữu ích với bạn, hãy cho một ⭐ star nhé!*
 
