@@ -7,4 +7,4 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 WORKDIR /app/out
-CMD ["dotnet", "CheckLiveBot"]
+CMD ["dotnet", "CheckLiveBot.dll"]
