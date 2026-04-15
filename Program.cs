@@ -2,7 +2,6 @@ using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.ReplyMarkups;
 using CheckLiveBot.Services;
 
 namespace CheckLiveBot
@@ -16,31 +15,40 @@ namespace CheckLiveBot
         private static MessageHandler _messageHandler;
         private static CallbackQueryHandler _callbackHandler;
 
+        // ✅ GIỮ NGUYÊN TOKEN
         private static readonly string BotToken = "8644559117:AAHbLNGyxWL6_KY8kbRqi_CM5aSymC3kPRE";
 
         static async Task Main(string[] args)
         {
-            _databaseService = new DatabaseService();
-            await _databaseService.InitializeDatabaseAsync();
+            try
+            {
+                _databaseService = new DatabaseService();
+                await _databaseService.InitializeDatabaseAsync();
 
-            _authService = new AuthorizationService(_databaseService);
-            _messageHandler = new MessageHandler(_databaseService, _authService);
-            _callbackHandler = new CallbackQueryHandler(_databaseService, _authService);
+                _authService = new AuthorizationService(_databaseService);
+                _messageHandler = new MessageHandler(_databaseService, _authService);
+                _callbackHandler = new CallbackQueryHandler(_databaseService, _authService);
 
-            _botClient = new TelegramBotClient(BotToken);
-            _cts = new CancellationTokenSource();
+                _botClient = new TelegramBotClient(BotToken);
+                _cts = new CancellationTokenSource();
 
-            _botClient.StartReceiving(
-                HandleUpdateAsync,
-                HandlePollingErrorAsync,
-                new ReceiverOptions { AllowedUpdates = Array.Empty<UpdateType>() },
-                _cts.Token
-            );
+                _botClient.StartReceiving(
+                    HandleUpdateAsync,
+                    HandlePollingErrorAsync,
+                    new ReceiverOptions { AllowedUpdates = Array.Empty<UpdateType>() },
+                    _cts.Token
+                );
 
-            var me = await _botClient.GetMe();
-            Console.WriteLine($"Bot @{me.Username} đã khởi động.");
-            Console.ReadLine();
-            _cts.Cancel();
+                var me = await _botClient.GetMe();
+                Console.WriteLine($"Bot @{me.Username} đã khởi động.");
+
+                // 🔥 FIX QUAN TRỌNG: giữ app chạy
+                await Task.Delay(-1);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fatal error: {ex.Message}");
+            }
         }
 
         private static async Task HandleUpdateAsync(ITelegramBotClient bot, Update update, CancellationToken ct)
@@ -64,5 +72,4 @@ namespace CheckLiveBot
             return Task.CompletedTask;
         }
     }
-
 }
